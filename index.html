@@ -21,9 +21,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -56,7 +54,6 @@
     transition: all 0.12s ease;
     mix-blend-mode: screen;
   }
-  body:hover .cursor { opacity: 1; }
 
   /* Grid background */
   body::before {
@@ -189,6 +186,7 @@
     background: var(--accent);
   }
 
+  /* ── HERO NAME: fully solid letters ── */
   .hero-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(4.5rem, 10vw, 9rem);
@@ -197,11 +195,9 @@
     white-space: nowrap;
     opacity: 0;
     animation: fadeUp 0.8s 0.4s forwards;
+    color: var(--text);          /* solid white/light for all letters */
   }
-  .hero-name span {
-    -webkit-text-stroke: 1px rgba(0,212,255,0.4);
-    color: transparent;
-  }
+  /* The "H N" accent stays cyan, also solid */
   .hero-name em {
     font-style: normal;
     color: var(--accent);
@@ -333,7 +329,6 @@
     font-weight: 500;
     letter-spacing: 0.5px;
   }
-  .cert-badge svg { flex-shrink: 0; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -432,10 +427,7 @@
   }
   .skill-card:hover { background: var(--surface2); transform: translateY(-4px); box-shadow: var(--glow); }
   .skill-card:hover::before { transform: scaleX(1); }
-  .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 14px;
-  }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 14px; }
   .skill-name {
     font-size: 0.8rem;
     font-weight: 600;
@@ -444,11 +436,7 @@
     color: var(--text);
     margin-bottom: 10px;
   }
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .skill-tag {
     background: rgba(0,212,255,0.06);
     border: 1px solid rgba(0,212,255,0.1);
@@ -526,11 +514,13 @@
     font-size: 0.75rem;
     white-space: nowrap;
   }
+
+  /* ── EXPERIENCE BULLET POINTS with inline metric chips ── */
   .exp-points {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
   }
   .exp-points li {
     display: flex;
@@ -538,15 +528,37 @@
     color: var(--muted);
     font-size: 0.9rem;
     line-height: 1.65;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,212,255,0.05);
+    align-items: flex-start;
   }
+  .exp-points li:last-child { border-bottom: none; }
   .exp-points li::before {
     content: '›';
     color: var(--accent);
     font-size: 1.2rem;
-    line-height: 1.4;
+    line-height: 1.5;
     flex-shrink: 0;
   }
   .exp-points strong { color: var(--text); font-weight: 500; }
+
+  /* Inline metric chip — sits right after the number in the text */
+  .metric-chip {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(123,47,255,0.12));
+    border: 1px solid rgba(0,212,255,0.25);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 1px 9px;
+    border-radius: 2px;
+    margin: 0 4px;
+    white-space: nowrap;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
 
   /* IMPACT METRICS */
   .metrics-row {
@@ -661,7 +673,7 @@
     font-size: 0.6rem;
   }
 
-  /* CONTACT / ABOUT */
+  /* CONTACT */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -745,29 +757,15 @@
     flex-wrap: wrap;
   }
   .edu-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-3px); }
-  .edu-icon {
-    font-size: 3rem;
-    flex-shrink: 0;
-  }
+  .edu-icon { font-size: 3rem; flex-shrink: 0; }
   .edu-degree {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.8rem;
     letter-spacing: 1px;
     margin-bottom: 6px;
   }
-  .edu-school {
-    color: var(--accent);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .edu-detail {
-    color: var(--muted);
-    font-size: 0.85rem;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+  .edu-school { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; }
+  .edu-detail { color: var(--muted); font-size: 0.85rem; display: flex; gap: 20px; flex-wrap: wrap; }
   .edu-cgpa {
     background: rgba(0,212,255,0.07);
     border: 1px solid rgba(0,212,255,0.15);
@@ -802,12 +800,7 @@
     padding: 8px 0;
     border-bottom: 1px solid var(--border);
   }
-  .mobile-menu .hire-btn {
-    border: none !important;
-    color: #fff !important;
-    text-align: center;
-    margin-top: 8px;
-  }
+  .mobile-menu .hire-btn { border: none !important; color: #fff !important; text-align: center; margin-top: 8px; }
 
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
@@ -834,10 +827,7 @@
     transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* Section divider */
   .divider {
@@ -885,7 +875,8 @@
 
   <div class="hero-tag">Available for opportunities · Bangalore, India</div>
 
-  <h1 class="hero-name"><span>ARUNA</span> H<em> N</em></h1>
+  <!-- Solid letters: no outline/transparent trick -->
+  <h1 class="hero-name">ARUNA H<em> N</em></h1>
 
   <div class="hero-title">
     <span class="title-pill">DevOps Engineer</span>
@@ -989,63 +980,47 @@
       <div class="skill-icon">☁️</div>
       <div class="skill-name">Cloud Platforms</div>
       <div class="skill-tags">
-        <span class="skill-tag">EC2</span>
-        <span class="skill-tag">VPC</span>
-        <span class="skill-tag">IAM</span>
-        <span class="skill-tag">S3</span>
-        <span class="skill-tag">RDS</span>
-        <span class="skill-tag">Redshift</span>
-        <span class="skill-tag">Lambda</span>
-        <span class="skill-tag">CloudWatch</span>
+        <span class="skill-tag">EC2</span><span class="skill-tag">VPC</span><span class="skill-tag">IAM</span>
+        <span class="skill-tag">S3</span><span class="skill-tag">RDS</span><span class="skill-tag">Redshift</span>
+        <span class="skill-tag">Lambda</span><span class="skill-tag">CloudWatch</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-icon">🏗️</div>
       <div class="skill-name">Infrastructure as Code</div>
       <div class="skill-tags">
-        <span class="skill-tag">Terraform</span>
-        <span class="skill-tag">Ansible</span>
-        <span class="skill-tag">CloudFormation</span>
+        <span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span class="skill-tag">CloudFormation</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-icon">🐳</div>
       <div class="skill-name">Containers & Orchestration</div>
       <div class="skill-tags">
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Kubernetes</span>
-        <span class="skill-tag">Amazon EKS</span>
-        <span class="skill-tag">Helm Charts</span>
+        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">Amazon EKS</span><span class="skill-tag">Helm Charts</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-icon">⚡</div>
       <div class="skill-name">CI/CD & DevOps</div>
       <div class="skill-tags">
-        <span class="skill-tag">Jenkins</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">DockerHub</span>
+        <span class="skill-tag">Jenkins</span><span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span><span class="skill-tag">DockerHub</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-icon">📊</div>
       <div class="skill-name">Observability</div>
       <div class="skill-tags">
-        <span class="skill-tag">Prometheus</span>
-        <span class="skill-tag">Grafana</span>
-        <span class="skill-tag">CloudWatch</span>
+        <span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">CloudWatch</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-icon">💻</div>
       <div class="skill-name">Scripting & OS</div>
       <div class="skill-tags">
-        <span class="skill-tag">Bash</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Linux RHEL</span>
-        <span class="skill-tag">Ubuntu</span>
-        <span class="skill-tag">Windows</span>
+        <span class="skill-tag">Bash</span><span class="skill-tag">Python</span><span class="skill-tag">Linux RHEL</span>
+        <span class="skill-tag">Ubuntu</span><span class="skill-tag">Windows</span>
       </div>
     </div>
   </div>
@@ -1072,13 +1047,27 @@
         <div class="exp-period">Jan 2022 – Nov 2025</div>
       </div>
       <ul class="exp-points">
-        <li><strong>Infrastructure Automation:</strong> Spearheaded migration of manual infrastructure to Terraform IaC — built reusable modules for EC2, VPC, and RDS, cutting provisioning time by <strong>50%</strong>.</li>
-        <li><strong>CI/CD Optimization:</strong> Designed and managed automated pipelines via Jenkins and DockerHub with integrated rollback strategies — achieved a <strong>40% reduction</strong> in deployment errors.</li>
-        <li><strong>Observability Stack:</strong> Engineered full-stack monitoring using Prometheus, Grafana, and CloudWatch with smart alerting for CPU spikes and latency, improving system uptime by <strong>15%</strong>.</li>
-        <li><strong>Kubernetes Orchestration:</strong> Managed production-grade Amazon EKS clusters, led quarterly version upgrades, and implemented Helm charts — achieving <strong>zero-downtime</strong> during maintenance windows.</li>
-        <li><strong>Incident Management:</strong> Collaborated with cross-functional teams on P1/P2 incidents. Reduced Mean Time to Resolve (MTTR) by <strong>30%</strong> through improved log analysis and RCA protocols.</li>
-        <li><strong>Security & Compliance:</strong> Hardened infrastructure by remediating security group misconfigurations and enforcing least-privilege IAM policies aligned with healthcare data standards.</li>
-        <li><strong>Configuration Management:</strong> Automated server configuration and patch management across <strong>50+ nodes</strong> using Ansible, ensuring consistency between staging and production.</li>
+        <li>
+          <strong>Infrastructure Automation:</strong>&nbsp;Migrated manual infra to Terraform IaC — reusable modules for EC2, VPC, and RDS, cutting provisioning time by <span class="metric-chip">↓ 50%</span> faster delivery.
+        </li>
+        <li>
+          <strong>CI/CD Optimization:</strong>&nbsp;Designed automated Jenkins + DockerHub pipelines with integrated rollback strategies — achieved <span class="metric-chip">↓ 40%</span> fewer deployment errors.
+        </li>
+        <li>
+          <strong>Observability Stack:</strong>&nbsp;Full-stack monitoring via Prometheus, Grafana, and CloudWatch with smart alerting for CPU spikes and latency — improved uptime by <span class="metric-chip">↑ 15%</span>.
+        </li>
+        <li>
+          <strong>Kubernetes Orchestration:</strong>&nbsp;Managed production Amazon EKS clusters, led quarterly version upgrades, and shipped Helm charts — achieving <span class="metric-chip">✓ 0 downtime</span> during maintenance windows.
+        </li>
+        <li>
+          <strong>Incident Management:</strong>&nbsp;Led P1/P2 incident resolution with improved log analysis and RCA protocols — reduced MTTR by <span class="metric-chip">↓ 30%</span>.
+        </li>
+        <li>
+          <strong>Security & Compliance:</strong>&nbsp;Hardened infrastructure by remediating security group misconfigurations and enforcing least-privilege IAM policies aligned with healthcare data standards.
+        </li>
+        <li>
+          <strong>Configuration Management:</strong>&nbsp;Automated server config and patch management across <span class="metric-chip">50+ nodes</span> using Ansible, ensuring parity between staging and production.
+        </li>
       </ul>
     </div>
   </div>
@@ -1142,8 +1131,8 @@
   <div class="contact-grid reveal">
     <div class="contact-left">
       <p class="contact-bio">
-        AWS Certified DevOps Engineer with nearly 4 years of experience building resilient, 
-        scalable cloud infrastructure. Currently open to exciting SRE, DevOps, or Cloud Engineering 
+        AWS Certified DevOps Engineer with nearly 4 years of experience building resilient,
+        scalable cloud infrastructure. Currently open to exciting SRE, DevOps, or Cloud Engineering
         roles. Let's build something reliable together.
       </p>
       <a href="mailto:engr.arunhn@gmail.com" class="btn-primary" style="display:inline-flex; text-decoration:none;">
@@ -1204,8 +1193,16 @@
   }
   animateCursor();
   document.querySelectorAll('a, button, .skill-card, .metric-card, .cert-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='50px'; ring.style.height='50px'; ring.style.borderColor='rgba(0,212,255,0.8)'; });
-    el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(0,212,255,0.5)'; });
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width='16px'; cursor.style.height='16px';
+      ring.style.width='50px'; ring.style.height='50px';
+      ring.style.borderColor='rgba(0,212,255,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width='10px'; cursor.style.height='10px';
+      ring.style.width='36px'; ring.style.height='36px';
+      ring.style.borderColor='rgba(0,212,255,0.5)';
+    });
   });
 
   // Hamburger
@@ -1217,7 +1214,7 @@
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(r => obs.observe(r));
 
@@ -1232,7 +1229,7 @@
     });
   });
 
-  // Touch: hide cursor on mobile
+  // Hide cursor on touch
   document.addEventListener('touchstart', () => {
     cursor.style.display = 'none';
     ring.style.display = 'none';
